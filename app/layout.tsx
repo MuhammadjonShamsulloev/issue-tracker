@@ -23,7 +23,7 @@ export default function RootLayout({
         <Theme>
           <NavBar />
           <main>
-            <main>{children}</main>
+            <main className="px-5">{children}</main>
           </main>
         </Theme>
       </body>
