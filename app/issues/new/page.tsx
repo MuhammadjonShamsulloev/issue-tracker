@@ -28,6 +28,18 @@ const NewIssuePage = () => {
     resolver: zodResolver(createIssueSchema),
   });
 
+  const onSubmit = handleSubmit(async (data) => {
+    try {
+      setSubmiting(true);
+      await axios.post(`/api/issues`, data);
+      router.push('/issues');
+    } catch (error) {
+      console.log('error', error);
+      setError('An expected error occurred');
+      setSubmiting(false);
+    }
+  });
+
   return (
     <div className="max-w-xl pb-4">
       {error && (
@@ -35,20 +47,7 @@ const NewIssuePage = () => {
           <Callout.Text color="red">{error}</Callout.Text>
         </Callout.Root>
       )}
-      <form
-        onSubmit={handleSubmit(async (data) => {
-          try {
-            setSubmiting(true);
-            await axios.post(`/api/issues`, data);
-            router.push('/issues');
-          } catch (error) {
-            console.log('error', error);
-            setError('An expected error occurred');
-            setSubmiting(false);
-          }
-        })}
-        className=" space-y-3"
-      >
+      <form onSubmit={onSubmit} className=" space-y-3">
         <TextField.Root placeholder="Title" {...register('title')} />
         <ErrorMessage>{errors.title?.message}</ErrorMessage>
 
