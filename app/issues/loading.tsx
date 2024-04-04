@@ -9,7 +9,7 @@ const LoadingIssuePage = () => {
   const issues = [1, 2, 3, 4, 5];
   return (
     <>
-    <IssueAction />
+      <IssueAction />
       <Table.Root variant="surface">
         <Table.Header>
           <Table.Row>
