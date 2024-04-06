@@ -13,9 +13,8 @@ const IssueDetailPage = async ({ params }: Props) => {
     where: { id: parseInt(params.id) },
   });
 
-  if (!issue) {
-    return notFound();
-  }
+  if (!issue) return notFound();
+
 
   return (
     <div>
